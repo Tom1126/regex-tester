@@ -4,24 +4,55 @@
     <title>Regexer 1.1.1</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="popup.css">
-    <link href="../../fonts/SourceSansPro-Regular.ttf" rel="stylesheet"> 
+    <link href="../../fonts/SourceSansPro-Regular.ttf" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="jquery.min.js"></script>
+    <script src="bootstrap.min.js"></script> 
   </head>
   <body>
+    <!--error message-->
     <div class="error__message__container">
-      <div id="error-message" class="error__message hide">
+      <div id="error-message" class="error__message hide"></div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 col-sm-5">
+            <div class="tabs-left">
+                <ul class="nav nav-tabs">
+                  <li class="active"><a href="#a" data-toggle="tab"><span class="glyphicon glyphicon-home"></span></a></li>
+                  <li><a href="#b" data-toggle="tab"><span class="glyphicon glyphicon-time"></span></a></li>
+                  <li><a href="#c" data-toggle="tab"><span class="glyphicon glyphicon-heart"></span></a></li>
+                </ul>
+                <div class="tab-content">
+                  <div class="tab-pane active" id="a">
+                    <!--home-->
+                    <h1 class="addon__title">Regexer 1.1.1</h1>
+                    <div class="addon__regex__input">
+                      <label for="enter-regex">Enter your regex</label>
+                      <input type="text" id="enter-regex" placeholder="Regex">
+                    </div>
+                    <div class="addon__text__input">
+                      <label for="enter-text">Enter text to test</label>
+                      <textarea rows="3" id="enter-text" placeholder="String to test"></textarea>
+                    </div>
+                    <div id="results" class="results"></div>
+                    <button id="test" class="addon__test__button">Test</button>
+                  </div>
+                  <!--history-->
+                  <div class="tab-pane" id="b">
+                    <h1 class="addon__title">Regexer 1.1.1</h1>
+                    <h4>History</h4>
+                  </div>
+                  <!--favorites-->
+                  <div class="tab-pane" id="c">
+                    <h1 class="addon__title">Regexer 1.1.1</h1>
+                    <h4>Favorites</h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
       </div>
-    </div>
-    <h1 class="addon__title">Regexer 1.1.1</h1>
-    <div class="addon__regex__input">
-      <label for="enter-regex">Enter your regex</label>
-      <input type="text" id="enter-regex" placeholder="Regex">
-    </div>
-    <div class="addon__text__input">
-      <label for="enter-text">Enter text to test</label>
-      <textarea rows="3" id="enter-text" placeholder="String to test"></textarea>
-    </div>
-    <button id="test" class="addon__test__button">Test</button>
-    <div id="results" class="results"></div>
     <script src="popup.js"></script>
     <script src="init.js"></script>
   </body>
