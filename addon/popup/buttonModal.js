@@ -19,9 +19,9 @@ window.onload = function() {
             document.getElementById('addFav').style.display = 'none'; //hide favorites button if no results produced
         }
     });
-    var list = document.getElementById("clickList");
+    var histList = document.getElementById("clickList");
     var trash = document.getElementById("clickTrash");
-    list.onclick = displayModal;
+    histList.onclick = displayModal;
     trash.onclick = displayConfirm;
 }
 

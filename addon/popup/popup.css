@@ -62,7 +62,8 @@ input::placeholder {
 
 .addon__regex__input, .addon__text__input, .addon__test__button {
   padding: 10px;
-  line-height: 40px;
+  
+  line-height: 33px;
 }
 
 .addon__test__button {
@@ -155,7 +156,7 @@ input::placeholder {
 }
    
 .nav-tabs .glyphicon {
-  color: #fff;
+  color: #3ECF8E;
 }
   
 .nav-tabs .active .glyphicon {
@@ -186,6 +187,8 @@ input::placeholder {
 
 .list-group {
   width: 100%;
+  margin-left: 10px;
+  padding-right: 20px;
 }
 
 .list-group .list-group-item {
@@ -230,4 +233,9 @@ input::placeholder {
 
 .glyphicon-trash:hover {
   color: red;
+}
+
+.tab-content-title {
+  padding: 10px;
+  font-weight: 500;
 }
