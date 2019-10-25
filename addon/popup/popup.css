@@ -239,3 +239,15 @@ input::placeholder {
   padding: 10px;
   font-weight: 500;
 }
+
+#a, #b, #c{
+  height: 500px;
+}
+
+#regexText{
+  resize: none !important;
+  background-color: #eee !important;
+  opacity: 1;
+  word-wrap: break-word !important;
+  height: 100px !important;
+}
