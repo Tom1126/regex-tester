@@ -3,10 +3,7 @@ function displayModal() {
     $('#viewDetails').modal('show');
 }
 
-// Delete Confirmation Dialog
-function displayConfirm() {
-    $("#deleteFav").modal('show');
-}
+
 
 window.onload = function() {
     var test = document.getElementById("test").addEventListener('click', (e) => {
@@ -20,8 +17,9 @@ window.onload = function() {
         }
     });
     var histList = document.getElementById("clickList");
-    var trash = document.getElementById("clickTrash");
+    //var trash = document.getElementById("clickTrash");
     histList.onclick = displayModal;
-    trash.onclick = displayConfirm;
+    //trash.onclick = displayConfirm;
+
 }
 
