@@ -11,10 +11,27 @@ if (typeof(Storage) !== "undefined") {
   // Code for localStorage/sessionStorage.
 
   //set data object with value or empty object in storage
-  data = localStorage.getItem('favData') ? JSON.parse(localStorage.getItem(`favData`)) : data
+  const getFav = browser.storage.local.get("favData")
+  getFav.then(results => {
+    if (!Object.is(results, undefined)) {
+
+      data = JSON.parse(results['favData'])
+      showFav();
+      favorites();
+
+    } else {
+      console.log(`favData not found in local storage`)
+    }
+
+    
+  })
+  .catch(err => {
+    console.error(err)
+  })
 
   //show data in favorite tab
-  showFav(data);
+  //showFav(data);
+
 
   //if addFav button is clicked
   document.getElementById('addFav').addEventListener('click', (e) => {
@@ -39,39 +56,49 @@ if (typeof(Storage) !== "undefined") {
         $("#inputDescDetails").modal('show');
         document.getElementById("enter-text").innerHTML=`Regex entered: ${regex}`//get regex value
         //detect click to submit description
-        document.getElementById("descSubmit").addEventListener('click', (e) => {
-          desc=document.getElementById('enter-desc').value;
-          console.log(desc)
-          $("#inputDescDetails").modal('hide');
+
+        const addFavElement = document.getElementById("descSubmit");
+
+        //if(addFavElement.getAttribute('listener')!=='true'){
+          document.getElementById("descSubmit").addEventListener('click', (e) => {
+            desc=document.getElementById('enter-desc').value;
+            console.log('desc',desc,'regex',regex,'text',text)
+            $("#inputDescDetails").modal('hide');
+          
+            //validate if description is empty
+            if (desc === null || desc === "") {
+              document.getElementById("favMessage").innerHTML = "Favorites adding insuccessful.";//show text and prompt user addign favorites insuccessful
+            }
+            else {
+
+              //add value into data object
+              data.regexArray.push(regex);
+              data.descArray.push(desc);
+              data.textArray.push(text)
+
+              //get current data and store into dateArray in data object
+              var d = new Date();
+              var datefullform = `${d.getDate()}-${d.getMonth() + 1}-${d.getFullYear()}`;
+              data.dateArray.push(datefullform);
+
+              //store data in storage
+              browser.storage.local.set({
+                'favData': JSON.stringify(data)
+              })
+
+              //set and show regex is added with a message
+              document.getElementById("favMessage").innerHTML = `${regex} is successfully added to favorites.`;//set text for display message to user
+
+              showFav()
+              favorites();
+
+
+            }
+
+
+          }, {once: true});//make sure the addEventListener only added once
+
         
-          //validate if description is empty
-          if (desc === null || desc === "") {
-            document.getElementById("favMessage").innerHTML = "Favorites adding insuccessful.";//show text and prompt user addign favorites insuccessful
-          }
-          else {
-
-
-            //add value into data object
-            data.regexArray.push(regex);
-            data.descArray.push(desc);
-            data.textArray.push(text)
-
-            //get current data and store into dateArray in data object
-            var d = new Date();
-            var datefullform = `${d.getDate()}-${d.getMonth() + 1}-${d.getFullYear()}`;
-            data.dateArray.push(datefullform);
-
-            //store data into local storage
-            localStorage.setItem('favData', JSON.stringify(data));
-
-            document.getElementById("favMessage").innerHTML = `${regex} is successfully added to favorites.`;//set text for display message to user
-
-            showFav(data)
-            favorites(data);
-
-          }
-        });
-
       }
       else{
         document.getElementById("favMessage").innerHTML = `${regex} exists in favorites.`;//set text for display message to user
@@ -84,7 +111,7 @@ if (typeof(Storage) !== "undefined") {
       document.getElementById("favMessage").innerHTML = ''
     })
 
-    favorites(data);
+    favorites();
 
       
 
@@ -93,14 +120,16 @@ if (typeof(Storage) !== "undefined") {
   console.log("no web storage support");
 }
 
+
+
 //function to display modal and set value for elements in modal
 /** 
    * @method  showFavModal
    *
-   * @param  {Object}  data
+   * @param  {int}  i
    * 
    */
-function showFavModal(i, data){
+function showFavModal(i){
 
   let favInfo = document.getElementById('favInfoContainer');
 
@@ -147,16 +176,17 @@ function showFavModal(i, data){
 /** 
    * @method  favorites
    *
-   * @param  {Object}  data
    * 
    */
-function favorites(data){
+function favorites(){
   for (let i = data.regexArray.length-1; i >= 0; i -= 1) {
     console.log('in favorites',i)
 
     document.getElementById(`clickTrash${i}`).addEventListener('click', (e) => {
       //alert(e.target.parentNode.id)
       $("#deleteFav").modal('show');
+
+      console.log('delete clicked')
 
       //button in modal to trigger deletion
       document.querySelector(".btn-success").addEventListener('click', (e) => {
@@ -166,24 +196,30 @@ function favorites(data){
         data.dateArray.splice(i, 1)
 
         //update storage
-        localStorage.setItem('favData', JSON.stringify(data));
+        browser.storage.local.set({
+          'favData': JSON.stringify(data)
+        })
 
-        showFav(data);
-        favorites(data)
+        showFav();
+        favorites()
         $("#deleteFav").modal('hide');
         //console.log(`fav${i}, ${i}`)
+
         return true;
-      })
+      }, {once: true})
 
       //to avoid clicked on li and pop up modal
       e.stopImmediatePropagation();
       e.stopPropagation();
       e.preventDefault();
 
+
     })
+
+    
     document.getElementById(`fav${i}`).addEventListener('click', (e) => {
       //alert(`fav${i}, ${i}`)
-      showFavModal(i, data)
+      showFavModal(i)
     })
   }
 }
@@ -192,15 +228,17 @@ function favorites(data){
 /** 
    * @method  showFav
    *
-   * @param  {Object}  data
    * 
    */
-function showFav(data){
+function showFav(){
+  //console.log('showFav function',data)
       
   let list = document.getElementById('fav-ul-list');
 
   //Clear display area
   list.innerHTML = '';
+
+  console.log(list.innerHTML)
   let info = '';    
 
   for (let i = data.regexArray.length-1; i >= 0; i -= 1) {
