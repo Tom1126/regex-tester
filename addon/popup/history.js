@@ -133,7 +133,7 @@ function deleteHistory(e) {
   $("#deleteHist").modal('show');
 
   const index = e.currentTarget.index
-  console.log(`Current index: ${ind}`)
+  console.log(`Current index: ${index}`)
 
   //button in modal to trigger deletion
   document.getElementById('histDeleteBtn').addEventListener('click', e => {

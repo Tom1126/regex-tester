@@ -62,7 +62,8 @@ input::placeholder {
 
 .addon__regex__input, .addon__text__input, .addon__test__button {
   padding: 10px;
-  line-height: 40px;
+  
+  line-height: 33px;
 }
 
 .addon__test__button {
@@ -95,6 +96,7 @@ input::placeholder {
   transform: translateX(-50%);
   font-size: 15px;
   line-height: 16px;
+  z-index: 1000;
 }
 
 .error__message {
@@ -124,4 +126,128 @@ input::placeholder {
 
 .hide {
   display: none;
+}
+
+/*addition*/
+.tabs-left { 
+  margin-top: 3rem; 
+}
+
+.nav-tabs {
+  float: left;
+  border-bottom: 0;
+  padding-top: 50px;
+}    
+
+.nav-tabs li {
+  float: none !important;
+  margin: 0;
+}
+
+.nav-tabs li a {
+  margin-right: 0;
+  border: 0;
+  border-radius: 0;
+  background-color: #333;
+}
+
+.nav-tabs li a:hover {
+  background-color: #444;
+}
+   
+.nav-tabs .glyphicon {
+  color: #3ECF8E;
+}
+  
+.nav-tabs .active .glyphicon {
+  color: #333;
+}
+  
+.nav-tabs>li.active>a, 
+.nav-tabs>li.active>a:hover, 
+.nav-tabs>li.active>a:focus {
+  border:0;
+}
+
+.tab-content {
+  margin-left: 45px;
+  margin-top: -50px;
+}
+
+.tab-content .tab-pane {
+  display: none;
+  background-color: #fff;
+  padding: 1.6rem;
+  overflow-y: auto;
+}
+  
+.tab-content .active { 
+  display: block; 
+}
+
+.list-group {
+  width: 100%;
+  margin-left: 10px;
+  padding-right: 20px;
+}
+
+.list-group .list-group-item {
+  height: 50px;
+  cursor: pointer;
+}
+
+.list-group .list-group-item:hover {
+  background-color: #d3d3d3;
+}
+
+.addon__fav__button {
+  display: none;
+  background-color: #ff4d4d;
+  border: none;
+  cursor: pointer;
+  margin: 10px;
+  color: #FFFFFF;
+  white-space: nowrap;
+  line-height: 40px;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .025em;
+  padding: 0 14px;
+  box-shadow: 0 4px 6px rgba(50,50,93,.11),0 1px 3px rgba(0,0,0,.08);
+}
+
+.list-title {
+  margin-top: -1px;
+}
+
+.list-date {
+  margin-top: -5px;
+  color: #808080
+}
+
+.glyphicon-trash {
+  margin-top: 10px;
+}
+
+.glyphicon-trash:hover {
+  color: red;
+}
+
+.tab-content-title {
+  padding: 10px;
+  font-weight: 500;
+}
+
+#a, #b, #c{
+  height: 500px;
+}
+
+#regexText{
+  resize: none !important;
+  background-color: #eee !important;
+  opacity: 1;
+  word-wrap: break-word !important;
+  height: 100px !important;
 }
