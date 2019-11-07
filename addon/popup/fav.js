@@ -15,7 +15,7 @@ if (typeof(Storage) !== "undefined") {
   getFav.then(results => {
     if (!Object.is(results, undefined)) {
 
-      data = JSON.parse(results['favData'])
+      data = JSON.parse(results['favData']) || data
       showFav();
       favorites();
 
@@ -251,6 +251,3 @@ function showFav(){
 
   list.innerHTML = info;
 }
-
-
-

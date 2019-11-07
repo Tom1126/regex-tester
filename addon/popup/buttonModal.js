@@ -3,7 +3,9 @@ function displayModal() {
     $('#viewDetails').modal('show');
 }
 
-
+function displayHistoryModal() {
+    $('#viewHistDetails').modal('show');
+}
 
 window.onload = function() {
     var test = document.getElementById("test").addEventListener('click', (e) => {
@@ -14,12 +16,7 @@ window.onload = function() {
         }
         else{
             document.getElementById('addFav').style.display = 'none'; //hide favorites button if no results produced
-        }
+        }  
     });
-    var histList = document.getElementById("clickList");
-    //var trash = document.getElementById("clickTrash");
-    histList.onclick = displayModal;
-    //trash.onclick = displayConfirm;
-
 }
 
