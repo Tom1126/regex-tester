@@ -1,9 +1,9 @@
 {
-  "manifest_version": 2,
-  "name": "Regxer",
+  "manifest_version": 1,
+  "name": "Regex Tester",
   "version": "1.1.1",
-  "description": "Quickly check matches in a string against a regular expression.",
-  "homepage_url": "https://github.com/tushararora/regexer",
+  "description": "Tests regular expressions against strings of texts.",
+  "homepage_url": "https://github.com/Tom1126/regex-tester",
   "icons": {
     "32": "images/icon_32.svg",
     "48": "images/icon_32.svg",
@@ -18,7 +18,7 @@
   "permissions": ["storage"],
   "browser_action": {
     "default_icon": "images/icon_32.svg",
-    "default_title": "Regexer",
+    "default_title": "Regex Tester",
     "default_popup": "addon/popup/index.html"
   }
 }

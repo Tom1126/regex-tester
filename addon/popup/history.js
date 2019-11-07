@@ -100,7 +100,7 @@ function showHistModal(i, data) {
   info += `</div>`
 
   info += `<div class="form-group">`
-  info += `<label class="control-label col-sm-3" for="regexDesc">Description: </label>`
+  info += `<label class="control-label col-sm-3" for="regexDesc">Regex: </label>`
   info += `<div class="col-sm-8">`
   info += `<input type="text" class="form-control" id="regexDesc" placeholder="Regex Text" name="regexDesc" value="${data.histDescArray[i]}" readonly>`
   info += `</div>`
@@ -185,7 +185,6 @@ function histories() {
     })
 
     document.getElementById(`hist${i}`).addEventListener('click', (e) => {
-      //alert(`fav${i}, ${i}`)
       showHistModal(i, histData)
     })
   }

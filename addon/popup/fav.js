@@ -87,7 +87,7 @@ if (typeof(Storage) !== "undefined") {
               })
 
               //set and show regex is added with a message
-              document.getElementById("favMessage").innerHTML = `${regex} is successfully added to favorites.`;//set text for display message to user
+              document.getElementById("favMessage").innerHTML = `${desc} is successfully added to favorites.`;//set text for display message to user
 
               showFav()
               favorites();
@@ -151,6 +151,13 @@ function showFavModal(i){
   info+= `<label class="control-label col-sm-3" for="regexDesc">Description: </label>`
   info+= `<div class="col-sm-8">`
   info+= `<input type="text" class="form-control" id="regexDesc" placeholder="Regex Text" name="regexDesc" value="${data.descArray[i]}" readonly>`
+  info+= `</div>`
+  info+= `</div>`
+
+  info+= `<div class="form-group">`
+  info+= `<label class="control-label col-sm-3" for="regexDesc">Regex: </label>`
+  info+= `<div class="col-sm-8">`
+  info+= `<input type="text" class="form-control" id="regexValue" placeholder="Regex Text" name="regexValue" value="${data.regexArray[i]}" readonly>`
   info+= `</div>`
   info+= `</div>`
 
@@ -244,7 +251,7 @@ function showFav(){
   for (let i = data.regexArray.length-1; i >= 0; i -= 1) {
     info+= `<li class="list-group-item favList" id="fav${i}">`
     info+= `<span class="glyphicon glyphicon-trash pull-right" aria-hidden="true" id="clickTrash${i}"></span>`
-    info+= `<h5 class="list-title ">${data.regexArray[i]}</h5>`
+    info+= `<h5 class="list-title ">${data.descArray[i]}</h5>`
     info+= `<h6 class="list-date">${data.dateArray[i]}</h6>`
     info+= `</li>`
   }
